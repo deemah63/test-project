@@ -47,9 +47,10 @@ function scripts() {
 // Отслежвание изменений в папке src
 function watch() {
 	gulp.watch(paths.styles.src, styles)
+	gulp.watch(paths.scripts.src, scripts)
 }
 // Переменная сборки
-const build = gulp.series(clean, styles, watch)
+const build = gulp.series(clean, gulp.parallel(styles, scripts), watch)
 // Алиасы для gulp
 exports.clean = clean
 exports.styles = styles
